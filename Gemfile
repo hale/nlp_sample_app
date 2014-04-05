@@ -43,3 +43,6 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+
+gem 'rails_nlp', git: 'https://github.com/hale/rails_nlp'
