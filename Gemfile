@@ -49,7 +49,11 @@ gem 'rails_nlp', git: 'https://github.com/hale/rails_nlp'
 gem 'foundation-rails'
 
 group :development, :test do
-  gem 'rspec-rails', '~> 3.0.0.beta'
+  gem 'rspec', '~> 3.0.0.beta2'
+  gem 'rspec-rails', '~> 3.0.0.beta2'
   gem 'capybara'
   gem 'factory_girl_rails'
+  gem 'guard-rspec', '~> 4.2.7', require: false
+  gem 'guard-bundler', require: false
+  gem 'guard-rails'
 end
