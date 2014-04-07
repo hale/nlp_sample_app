@@ -2,7 +2,7 @@ NlpSampleApp::Application.routes.draw do
 
   root 'home#index'
 
-  resources :search, only: [:index]
+  resources :search, only: [:index, :new]
 
 
 

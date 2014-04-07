@@ -4,4 +4,7 @@ class SearchController < ApplicationController
     @results = ["result"]
   end
 
+  def new
+  end
+
 end
