@@ -47,3 +47,7 @@ end
 
 gem 'rails_nlp', git: 'https://github.com/hale/rails_nlp'
 gem 'foundation-rails'
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0.0.beta'
+end
