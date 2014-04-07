@@ -46,3 +46,4 @@ end
 
 
 gem 'rails_nlp', git: 'https://github.com/hale/rails_nlp'
+gem 'foundation-rails'
