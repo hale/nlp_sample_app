@@ -35,6 +35,12 @@ describe BooksController do
       get :search, query: "moose"
       expect(assigns(:query)).to eq("moose")
     end
+
+    it "limits results size to 10" do
+      FactoryGirl.create_list(:book, 12, title: "a strong man")
+      get :search, query: "strong"
+      expect(assigns(:results)).to have_at_most(10).items
+    end
 end
 
   # This should return the minimal set of attributes required to create a valid

@@ -3,7 +3,8 @@ class BooksController < ApplicationController
 
   def search
     @query = params[:query]
-    @results = Searcher.search(@query, resolve: true)
+    page = params[:page] || 1
+    @results = Searcher.search(@query, resolve: true, page: page)
   end
 
   # GET /books
