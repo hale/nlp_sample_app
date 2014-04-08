@@ -25,4 +25,3 @@ production:
   encoding: unicode
   database: rails_nlp_production
   pool: 5
-  timeout: 5000
