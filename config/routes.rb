@@ -1,10 +1,11 @@
 NlpSampleApp::Application.routes.draw do
 
-  resources :books
+  resources :books do
+    get 'search', on: :collection
+  end
 
   root 'home#index'
 
-  resources :search, only: [:index, :new]
 
 
 

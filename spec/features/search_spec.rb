@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe "search results" do
-  it "displays the search query" do
+describe "search books from /" do
+  it "results page contains search query" do
     @book = FactoryGirl.create(:book, title: "Jade divorces Edward")
-    visit '/search/new'
+    visit '/'
     fill_in "Query", with: "divorces"
     click_button "Search"
 

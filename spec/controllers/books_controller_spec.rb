@@ -20,6 +20,18 @@ require 'spec_helper'
 
 describe BooksController do
 
+  describe "GET search" do
+    it "works" do
+      get :search
+      expect(response).to be_successful
+    end
+
+    it "assigns some results" do
+      get :search
+      expect(assigns(:results)).not_to be_empty
+    end
+end
+
   # This should return the minimal set of attributes required to create a valid
   # Book. As you add validations to Book, be sure to
   # adjust the attributes here as well.
