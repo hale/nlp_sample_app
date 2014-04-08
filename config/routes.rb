@@ -1,5 +1,7 @@
 NlpSampleApp::Application.routes.draw do
 
+  resources :books
+
   root 'home#index'
 
   resources :search, only: [:index, :new]
