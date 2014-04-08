@@ -5,3 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+#
+
+require "#{Rails.root}/lib/parser.rb"
+
+Parser::Parser.get_books.each do |book|
+  Book.create(title: book.title, content: book.content)
+end
+
