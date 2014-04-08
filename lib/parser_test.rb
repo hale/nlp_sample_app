@@ -2,15 +2,9 @@ module Parser
   require "#{File.expand_path(File.dirname(__FILE__))}/parser.rb"
 
   def self.run_tests
-    puts "HTML strip test #{ html_strip_test ? 'PASS' : 'FAIL'}"
     puts "Extract title test #{ extract_title_test ? 'PASS' : 'FAIL'}"
     puts "Extract content test #{ extract_content_test ? 'PASS' : 'FAIL'}"
     puts "Get filenames test #{ get_filenames_test ? 'PASS' : 'FAIL'}"
-  end
-
-  def self.html_strip_test
-    dirty = "<html><head></head><body><h1>disco dancer</h1><p>death</p></body></html>"
-    Parser.strip_html(dirty) == "disco dancer death"
   end
 
   def self.extract_title_test
@@ -30,7 +24,7 @@ module Parser
   end
 
   def self.get_filenames_test
-    Parser.get_filenames.size == 349
+    Parser.get_filenames.size == 151
   end
 
   run_tests

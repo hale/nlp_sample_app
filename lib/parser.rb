@@ -22,13 +22,8 @@ module Parser
       books
     end
 
-    def self.strip_html(str)
-      Sanitize.clean(str).squeeze(" ").strip
-    end
-
     def self.parse_book(filename)
       content = IO.read("#{SCI_FI_DIR}/#{filename}")
-      content = strip_html(content) if filename.split(/\./)[1] == 'html'
 
       title = nil
       content.split(/\n/).each do |line|
@@ -42,7 +37,7 @@ module Parser
         Dir.new(SCI_FI_DIR).each do |filename|
           list << filename
         end
-      end - [".", ".."]
+      end - [".", "..", ".DS_Store"]
     end
   end
 end
