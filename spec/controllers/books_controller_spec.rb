@@ -26,21 +26,22 @@ describe BooksController do
       expect(response).to be_successful
     end
 
-    it "assigns some results" do
+    it "assigns a result set" do
       get :search
-      expect(assigns(:results)).not_to be_nil
+      expect(assigns(:result_set)).to_not be_nil
     end
 
-    it "assigns the query" do
-      get :search, query: "moose"
-      expect(assigns(:query)).to eq("moose")
+    it "sets the page on the result set" do
+      get :search, page: 8
+      expect(assigns(:result_set).page).to eq("8")
     end
 
-    it "limits results size to 10" do
+    it "limits results size to 5" do
       FactoryGirl.create_list(:book, 12, title: "a strong man")
       get :search, query: "strong"
-      expect(assigns(:results)).to have_at_most(10).items
+      expect(assigns(:result_set).documents).to have_at_most(10).items
     end
+
 end
 
   # This should return the minimal set of attributes required to create a valid

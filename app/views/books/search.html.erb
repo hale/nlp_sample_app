@@ -2,11 +2,14 @@
     <div class="large-12 columns ">
       <div class="row">
         <div class="large-9 columns">
-          <h2>Search Results for: <%=@query%></h2>
+          <h2 class="search-query search-results-count">
+            <%= "#{@result_set.size} Results for: #{@result_set.query}" %>
+          </h2>
         </div>
       </div>
+      <%= paginate @result_set.documents %>
       <div class="search-results">
-        <% @results.each do |book| %>
+        <% @result_set.models.each do |book| %>
         <div class="row ">
           <div class="large-2 columns">
             <a href="#"> <span> </span><img src="http://placehold.it/150x200&text=book cover" alt="book cover" class=" thumbnail"></a>
@@ -37,6 +40,6 @@
         </div>
       <% end %>
       </div>
-      <a href="#" class="button right"> show more results &raquo;</a>
+      <%= paginate @result_set.documents %>
     </div>
   </div>

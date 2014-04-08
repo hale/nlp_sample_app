@@ -2,9 +2,8 @@ class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
 
   def search
-    @query = params[:query]
-    page = params[:page] || 1
-    @results = Searcher.search(@query, resolve: true, page: page)
+    @result_set = Searcher.search(params[:query])
+    @result_set.page = params[:page]
   end
 
   # GET /books
