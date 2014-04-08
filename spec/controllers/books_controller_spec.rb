@@ -28,7 +28,12 @@ describe BooksController do
 
     it "assigns some results" do
       get :search
-      expect(assigns(:results)).not_to be_empty
+      expect(assigns(:results)).not_to be_nil
+    end
+
+    it "assigns the query" do
+      get :search, query: "moose"
+      expect(assigns(:query)).to eq("moose")
     end
 end
 

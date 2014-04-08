@@ -1,5 +1,8 @@
 <!-- Search field -->
 <div class="small-8 large-10 columns ">
-  <input type="text" class="search-field" name="Query" placeholder="your search ">
-  <button type="submit" name="Search">Search</button>
+  <%= form_tag(search_books_path, method: :get) do %>
+    <%= label_tag(:query, "Search for:") %>
+    <%= text_field_tag(:query) %>
+    <%= submit_tag("Search") %>
+  <% end %>
 </div>
