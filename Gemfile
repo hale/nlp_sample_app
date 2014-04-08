@@ -57,3 +57,5 @@ group :development, :test do
   gem 'guard-bundler', require: false
   gem 'guard-rails'
 end
+
+gem 'rails_12factor', group: :production
