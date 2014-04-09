@@ -49,6 +49,7 @@ gem 'rails_nlp', git: 'https://github.com/hale/rails_nlp'
 gem 'foundation-rails'
 gem 'pg_search'
 gem 'kaminari'
+gem 'passenger'
 
 group :development, :test do
   gem 'rspec', '~> 3.0.0.beta2'
