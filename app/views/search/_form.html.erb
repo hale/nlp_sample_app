@@ -1,7 +1,7 @@
 <!-- Search field -->
 <div class="small-8 large-10 columns ">
   <%= form_tag(search_books_path, method: :get) do %>
-    <%= label_tag(:query, "Search for:") %>
+    <%= label_tag(:query, "Search titles:") %>
     <%= text_field_tag(:query) %>
     <%= submit_tag("Search") %>
   <% end %>
