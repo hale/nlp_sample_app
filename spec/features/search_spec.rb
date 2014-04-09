@@ -36,4 +36,13 @@ describe "search books from /" do
 
     expect(page).to have_selector(".search-results-count", text: /22/)
   end
+   it "results show the first bit of the content" do
+     FactoryGirl.create(:book, content: "#{"Buttery biscuit base"*99*99}secret")
+    visit '/'
+    fill_in "query", with: "biscuit"
+    click_button "Search"
+
+    expect(page).to have_content("Buttery")
+    expect(page).to_not have_content("secret")
+   end
 end
