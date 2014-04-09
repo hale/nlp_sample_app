@@ -7,12 +7,12 @@ describe Searcher do
 
   it "matches against book titles" do
     book = FactoryGirl.create(:book, title: "elephant")
-    expect(Searcher.search("elephant").models).to include(book)
+    expect(Searcher.search("elephant").results).to include(book)
   end
 
   it "matches against book content" do
     book = FactoryGirl.create(:book, content: "tortoise")
-    expect(Searcher.search("tortoise").models).to include(book)
+    expect(Searcher.search("tortoise").results).to include(book)
   end
 
 end

@@ -5,19 +5,15 @@ class ResultSet
   attr_reader :query, :size
   attr_accessor :page
 
-  def initialize(query: query, documents: documents)
+  def initialize(query: query, results: results)
     @query = query
-    @documents = documents
+    @results = results
     @page = 1
-    @size = documents.size
+    @size = results.size
   end
 
-  def models
-    documents.map(&:searchable)
-  end
-
-  def documents
-    @documents.page(@page).per(PER_PAGE)
+  def results
+    @results.page(@page).per(PER_PAGE)
   end
 
 end

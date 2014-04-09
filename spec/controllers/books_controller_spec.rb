@@ -39,7 +39,7 @@ describe BooksController do
     it "limits results size to 5" do
       FactoryGirl.create_list(:book, 12, title: "a strong man")
       get :search, query: "strong"
-      expect(assigns(:result_set).documents).to have_at_most(10).items
+      expect(assigns(:result_set).results).to have_at_most(10).items
     end
 
 end

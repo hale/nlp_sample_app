@@ -7,9 +7,9 @@
           </h2>
         </div>
       </div>
-      <%= paginate @result_set.documents %>
+      <%= paginate @result_set.results %>
       <div class="search-results">
-        <% @result_set.models.each do |book| %>
+        <% @result_set.results.each do |book| %>
         <div class="row ">
           <div class="large-2 columns">
             <a href="#"> <span> </span><img src="http://placehold.it/150x200&text=book cover" alt="book cover" class=" thumbnail"></a>
@@ -40,6 +40,6 @@
         </div>
       <% end %>
       </div>
-      <%= paginate @result_set.documents %>
+      <%= paginate @result_set.results %>
     </div>
   </div>

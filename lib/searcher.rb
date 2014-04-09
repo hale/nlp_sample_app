@@ -1,6 +1,6 @@
 class Searcher
   def self.search(query)
-    documents = PgSearch.multisearch(query)
-    ResultSet.new(query: query, documents: documents)
+    results = Book.search(query)
+    ResultSet.new(query: query, results: results)
   end
 end
