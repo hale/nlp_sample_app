@@ -4,12 +4,12 @@
     <%= label_tag(:query, "Search for:") %>
     <%= text_field_tag(:query) %>
     <%= label_tag(:search, "Search on:") %><br />
-    <%= radio_button_tag('search', 'titles', true) %>
-    <%= label_tag(:search, "Titles", value: 'titles') %>
+    <%= radio_button_tag('search', 'title', true) %>
+    <%= label_tag(:search, "Title", value: 'title') %>
     <%= radio_button_tag('search', 'content') %>
     <%= label_tag(:search, "Content", value: 'content') %>
-    <%= radio_button_tag('search', 'titles_and_content') %>
-    <%= label_tag(:search, "Titles and content", value: 'titles_and_content') %>
+    <%= radio_button_tag('search', 'title_and_content') %>
+    <%= label_tag(:search, "Title and content", value: 'title_and_content') %>
     <%= submit_tag("Search") %>
   <% end %>
 </div>

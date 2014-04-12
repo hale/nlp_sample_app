@@ -12,20 +12,20 @@ describe "search books from /" do
   describe "restricting search to certain fields" do
     it "with 'search titles' includes results matching the title"  do
       FactoryGirl.create(:book, title: "Jade divorces Edward")
-      search_for(query: "divorces", choose: "search_titles")
+      search_for(query: "divorces", choose: "search_title")
       expect(page).to have_selector('.book-title', text: "Jade divorces Edward")
     end
 
     it "with 'search titles' excludes results matching the content" do
       FactoryGirl.create(:book, content: "Jade divorces Edward")
-      search_for(query: "divorces", choose: "search_titles")
+      search_for(query: "divorces", choose: "search_title")
       expect(page).to_not have_selector('.book-title', text: "Jade divorces Edward")
     end
 
    it "with 'search content' includes results matching the content"  do
-      FactoryGirl.create(:book, content: "Jade divorces Edward")
+      FactoryGirl.create(:book, content: "Jade divorces Edward", title: "not searched")
       search_for(query: "divorces", choose: "search_content")
-      expect(page).to have_selector('.book-title', text: "Jade divorces Edward")
+      expect(page).to have_selector('.book-title', text: "not searched")
     end
 
     it "with 'search content' excludes results matching the title" do
@@ -37,19 +37,19 @@ describe "search books from /" do
 
     it "with 'search titles and content' includes results matching the title"  do
       FactoryGirl.create(:book, title: "Jade divorces Edward")
-      search_for(query: "divorces", choose: "search_titles_and_content")
+      search_for(query: "divorces", choose: "search_title_and_content")
       expect(page).to have_selector('.book-title', text: "Jade divorces Edward")
     end
 
-    it "with 'search titles and content' excludes results matching the content" do
-      FactoryGirl.create(:book, content: "Jade divorces Edward")
-      search_for(query: "divorces", choose: "search_titles_and_content")
-      expect(page).to have_selector('.book-title', text: "Jade divorces Edward")
+    it "with 'search titles and content' includes results matching the content" do
+      FactoryGirl.create(:book, content: "Jade divorces Edward", title: 'not searched')
+      search_for(query: "divorces", choose: "search_title_and_content")
+      expect(page).to have_selector('.book-title', text: "not searched")
     end
 
     it "by default 'search titles' is selected" do
       visit '/'
-      expect(page).to have_checked_field("search_titles")
+      expect(page).to have_checked_field("search_title")
     end
   end
 
@@ -75,6 +75,7 @@ describe "search books from /" do
     FactoryGirl.create(:book, content: "#{"Buttery biscuit base"*99*99}secret")
     visit '/'
     fill_in "query", with: "biscuit"
+    choose("search_content")
     click_button "Search"
 
     expect(page).to have_content("Buttery")
