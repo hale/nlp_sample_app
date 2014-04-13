@@ -1,13 +1,4 @@
 GIT
-  remote: https://github.com/hale/rails_nlp
-  revision: 8ea562cf62333ac65e53885d0e4d91e7e0d69a1b
-  specs:
-    rails_nlp (0.0.1)
-      activerecord (~> 4.0)
-      facets (~> 2.9)
-      sanitize (~> 2.1)
-
-GIT
   remote: https://github.com/jnicklas/capybara.git
   revision: 59f751f1c4dcd570175cfc33d2a87da2f4ac7544
   specs:
@@ -17,6 +8,14 @@ GIT
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+
+PATH
+  remote: ../rails_nlp
+  specs:
+    rails_nlp (0.0.1)
+      activerecord (~> 4.0)
+      facets (~> 2.9)
+      sanitize (~> 2.1)
 
 GEM
   remote: https://rubygems.org/
@@ -206,7 +205,7 @@ GEM
       activesupport (>= 3.0)
       sprockets (~> 2.8)
     thor (0.19.1)
-    thread_safe (0.3.2)
+    thread_safe (0.3.3)
     tilt (1.4.1)
     timers (1.1.0)
     treetop (1.4.15)

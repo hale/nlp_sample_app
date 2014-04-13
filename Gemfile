@@ -45,7 +45,8 @@ end
 # gem 'debugger', group: [:development, :test]
 
 
-gem 'rails_nlp', git: 'https://github.com/hale/rails_nlp'
+#gem 'rails_nlp', git: 'https://github.com/hale/rails_nlp'
+gem 'rails_nlp', path: '../rails_nlp'
 gem 'foundation-rails'
 gem 'pg_search'
 gem 'kaminari'
