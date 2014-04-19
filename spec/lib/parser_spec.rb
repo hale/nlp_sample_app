@@ -14,7 +14,7 @@ describe Parser do
     first_line = "Project Gutenberg's In the Year 2889, by Jules Verne and Michel Verne"
     book = Parser.parse_book(filename)
 
-    expect(book.content.split(/\n/, 2).first.chomp).to eq(first_line)
+    expect(book.content.split(/\r/, 2).first.chomp).to eq(first_line)
   end
 
   it "gets the right filenames" do
