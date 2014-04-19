@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140408110236) do
+ActiveRecord::Schema.define(version: 20140419205020) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,10 +23,27 @@ ActiveRecord::Schema.define(version: 20140408110236) do
     t.datetime "updated_at"
   end
 
+  create_table "keywords", force: true do |t|
+    t.string   "name"
+    t.string   "metaphone"
+    t.string   "stem"
+    t.text     "synonyms"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "pg_search_documents", force: true do |t|
     t.text     "content"
     t.integer  "searchable_id"
     t.string   "searchable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "wordcounts", force: true do |t|
+    t.integer  "analysable_id"
+    t.integer  "keyword_id"
+    t.integer  "count"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
