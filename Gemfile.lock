@@ -15,6 +15,7 @@ PATH
     rails_nlp (0.0.1)
       activerecord (~> 4.0)
       facets (~> 2.9)
+      ffi-hunspell (~> 0.3.0)
       sanitize (~> 2.1)
 
 GEM
@@ -70,6 +71,8 @@ GEM
       factory_girl (~> 4.4.0)
       railties (>= 3.0.0)
     ffi (1.9.3)
+    ffi-hunspell (0.3.0)
+      ffi (~> 1.0)
     formatador (0.2.4)
     foundation-rails (5.2.2.0)
       railties (>= 3.1.0)
@@ -183,6 +186,7 @@ GEM
       rspec-mocks (= 3.0.0.beta2)
       rspec-support (= 3.0.0.beta2)
     rspec-support (3.0.0.beta2)
+    ruby-progressbar (1.4.2)
     sanitize (2.1.0)
       nokogiri (>= 1.4.4)
     sass (3.2.19)
@@ -243,6 +247,7 @@ DEPENDENCIES
   rails_nlp!
   rspec (~> 3.0.0.beta2)
   rspec-rails (~> 3.0.0.beta2)
+  ruby-progressbar (~> 1.4.2)
   sass-rails (~> 4.0.2)
   sdoc
   turbolinks

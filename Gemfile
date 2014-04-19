@@ -51,6 +51,7 @@ gem 'foundation-rails'
 gem 'pg_search'
 gem 'kaminari'
 gem 'passenger'
+gem 'ruby-progressbar', '~> 1.4.2', require: false
 
 group :development, :test do
   gem 'rspec', '~> 3.0.0.beta2'
