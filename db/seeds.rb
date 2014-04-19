@@ -10,11 +10,9 @@
 require "#{Rails.root}/lib/parser.rb"
 require 'ruby-progressbar'
 
-books = Parser::Parser.get_books(reduce_to: 0.05)
+books = Parser::Parser.get_books(reduce_to: 1)
 pbar = ProgressBar.create(title: "DB Seed", total: books.size)
-
 books.each do |book|
-  Book.create(title: book.title, content: book.content)
+  Book.create!(title: book.title, content: book.content)
   pbar.increment
 end
-

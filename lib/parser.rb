@@ -6,7 +6,7 @@ class Parser
 
   Book = Struct.new(:content, :title)
 
-  def self.get_books(reduce_to: 1)
+  def self.get_books(reduce_to: 100)
     books = []
     get_filenames.each do |filename|
       print "Adding #{filename}..."
@@ -20,14 +20,14 @@ class Parser
     books
   end
 
-  def self.parse_book(filename, reduce_to: 1)
+  def self.parse_book(filename, reduce_to: 100)
     content = IO.read("#{SCI_FI_DIR}/#{filename}")
 
     title = nil
     remaining_content = ""
     content.split(/\n/).each do |line|
       title ||= line[7..-1].chomp if line[0..6] == "Title: "
-      remaining_content << line if rand < reduce_to
+      remaining_content << line if rand(100) < reduce_to
     end
     Book.new(remaining_content, title)
   end
