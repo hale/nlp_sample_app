@@ -61,6 +61,7 @@ group :development, :test do
   gem 'guard-rspec', '~> 4.2.7', require: false
   gem 'guard-bundler', require: false
   gem 'guard-rails'
+  gem 'ruby-prof', require: false
 end
 
 group :production do

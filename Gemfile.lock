@@ -186,6 +186,7 @@ GEM
       rspec-mocks (= 3.0.0.beta2)
       rspec-support (= 3.0.0.beta2)
     rspec-support (3.0.0.beta2)
+    ruby-prof (0.14.2)
     ruby-progressbar (1.4.2)
     sanitize (2.1.0)
       nokogiri (>= 1.4.4)
@@ -247,6 +248,7 @@ DEPENDENCIES
   rails_nlp!
   rspec (~> 3.0.0.beta2)
   rspec-rails (~> 3.0.0.beta2)
+  ruby-prof
   ruby-progressbar (~> 1.4.2)
   sass-rails (~> 4.0.2)
   sdoc
