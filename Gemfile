@@ -62,6 +62,7 @@ group :development, :test do
   gem 'guard-bundler', require: false
   gem 'guard-rails'
   gem 'ruby-prof', require: false
+  gem 'flexmock', "~> 1.3.1"
 end
 
 group :production do

@@ -108,14 +108,14 @@ end
     describe "with invalid params" do
       it "assigns a newly created but unsaved book as @book" do
         # Trigger the behavior that occurs when invalid params are submitted
-        allow_any_instance_of(Book).to receive(:save).and_return(false)
+        flexmock(Book).new_instances.should_receive(:save).and_return(false)
         post :create, {:book => { "title" => "invalid value" }}, valid_session
         expect(assigns(:book)).to be_a_new(Book)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        allow_any_instance_of(Book).to receive(:save).and_return(false)
+        flexmock(Book).new_instances.should_receive(:save).and_return(false)
         post :create, {:book => { "title" => "invalid value" }}, valid_session
         expect(response).to render_template("new")
       end
@@ -130,7 +130,7 @@ end
         # specifies that the Book created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        expect_any_instance_of(Book).to receive(:update).with({ "title" => "MyText" })
+        flexmock(Book).new_instances.should_receive(:update).with({ "title" => "MyText" })
         put :update, {:id => book.to_param, :book => { "title" => "MyText" }}, valid_session
       end
 
@@ -151,18 +151,11 @@ end
       it "assigns the book as @book" do
         book = Book.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        allow_any_instance_of(Book).to receive(:save).and_return(false)
+        flexmock(Book).new_instances.should_receive(:save).and_return(false)
         put :update, {:id => book.to_param, :book => { "title" => "invalid value" }}, valid_session
         expect(assigns(:book)).to eq(book)
       end
 
-      it "re-renders the 'edit' template" do
-        book = Book.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        allow_any_instance_of(Book).to receive(:save).and_return(false)
-        put :update, {:id => book.to_param, :book => { "title" => "invalid value" }}, valid_session
-        expect(response).to render_template("edit")
-      end
     end
   end
 
