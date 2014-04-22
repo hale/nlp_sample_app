@@ -63,6 +63,7 @@ group :development, :test do
   gem 'guard-rails'
   gem 'ruby-prof', require: false
   gem 'flexmock', "~> 1.3.1"
+  gem 'launchy'
 end
 
 group :production do

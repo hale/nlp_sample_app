@@ -85,4 +85,13 @@ describe "search books from /" do
     expect(page).to have_content("Buttery")
     expect(page).to_not have_content("secret")
   end
+
+  it "can view book from search results page" do
+    book = FactoryGirl.create(:book, title: "British bake off")
+    visit '/'
+    search_for(query: "bake", choose: "search_title")
+    click_on "Open Book"
+
+    expect(current_path).to eq(book_path(book))
+  end
 end
