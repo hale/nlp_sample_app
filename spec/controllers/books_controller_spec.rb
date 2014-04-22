@@ -42,6 +42,12 @@ describe BooksController do
       expect(assigns(:result_set).results).to have_at_most(10).items
     end
 
+   it "removes stop words from the search query" do
+      flexmock(RailsNlp).should_receive(:suggest_stopwords).and_return(%w(the and his))
+      flexmock(Searcher).should_receive(:search).with(query: "man dog", scope: "title").once.and_return(ResultSet.new(query: "", results: []))
+      get :search, query: "the man and his dog"
+    end
+
 end
 
   # This should return the minimal set of attributes required to create a valid

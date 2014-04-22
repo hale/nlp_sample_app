@@ -9,6 +9,10 @@ end
 
 describe "search books from /" do
 
+  before(:each) do
+    flexmock(RailsNlp).should_receive(:suggest_stopwords).and_return([]).by_default
+  end
+
   describe "restricting search to certain fields" do
     it "with 'search titles' includes results matching the title"  do
       FactoryGirl.create(:book, title: "Jade divorces Edward")
