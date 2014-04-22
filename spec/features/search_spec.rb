@@ -94,4 +94,19 @@ describe "search books from /" do
 
     expect(current_path).to eq(book_path(book))
   end
+
+  describe "removing stop words" do
+    it "removes frequently occurring words" do
+      RailsNlp.flexmock_teardown
+      FactoryGirl.create(:book, title: "the cat is in the hat", content: "it is the best")
+      FactoryGirl.create(:book, title: "the rat is on the mat", content: "to is or not to is")
+      FactoryGirl.create(:book, title: "the poodle is on the desk")
+      FactoryGirl.create(:book, title: "big printer tackles red car")
+      flexmock(Searcher).should_receive(:stop_words).and_return(RailsNlp.suggest_stopwords)
+      visit '/'
+      search_for(query: "who is the best the cat or the rat", choose: "search_title_and_content")
+
+      expect(page).to have_selector(".search-query-stopwords-removed", text: /who best cat or rat/)
+    end
+  end
 end

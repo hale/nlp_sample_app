@@ -3,10 +3,7 @@ class BooksController < ApplicationController
 
   def search
     search_scope = params[:search] || Searcher::TITLE
-    stop_words = RailsNlp.suggest_stopwords
-    query = params[:query] || ""
-    query = (query.split - stop_words).join(" ")
-    @result_set = Searcher.search(query: query, scope: search_scope)
+    @result_set = Searcher.search(query: params[:query], scope: search_scope)
     @result_set.page = params[:page]
   end
 
