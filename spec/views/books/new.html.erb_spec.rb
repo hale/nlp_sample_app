@@ -2,10 +2,10 @@ require 'spec_helper'
 
 describe "books/new" do
   before(:each) do
-    assign(:book, stub_model(Book,
+    assign(:book, flexmock(Book.new,
       :title => "MyText",
       :content => "MyText"
-    ).as_new_record)
+    ))
   end
 
   it "renders new book form" do

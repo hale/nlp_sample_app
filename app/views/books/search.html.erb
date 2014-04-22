@@ -5,6 +5,9 @@
           <h2 class="search-query search-results-count">
             <%= "#{@result_set.size} Results for: #{@result_set.query}" %>
           </h2>
+          <h3 class="search-query-stopwords-removed">
+            Actual search query: <%= @result_set.query_no_stopwords %>
+          </h3>
         </div>
       </div>
       <%= paginate @result_set.results %>
@@ -21,7 +24,9 @@
                 <p><a href="#"> Info</a> | <a href="#">Buy this book</a></p>
               </div>
               <div class=" large-3 columns">
-                <a href="#"  class="button  expand medium"><span>Open Book</span> </a>
+              <%= link_to  book_path(book), class: "button expand medium" do %>
+                <span>Open Book</span>
+              <% end %>
               </div>
               <div class="row">
                 <div class=" large-12 columns">

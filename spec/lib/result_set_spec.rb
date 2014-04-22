@@ -27,6 +27,13 @@ describe ResultSet do
     end
   end
 
+  describe "RailsNLP extras" do
+    it "includes the query with stopwords removed" do
+      rs = ResultSet.new(query: "the big man", results: ResultsMock.new, query_no_stopwords: "big man")
+      expect(rs.query_no_stopwords).to eq("big man")
+    end
+  end
+
 end
 
 class ResultsMock
