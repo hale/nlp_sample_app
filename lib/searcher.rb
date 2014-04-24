@@ -27,6 +27,6 @@ class Searcher
   private
 
   def self.stop_words
-    RailsNlp.suggest_stopwords(n: 200)
+    RailsNlp.suggest_stopwords(n_max: 200)
   end
 end
