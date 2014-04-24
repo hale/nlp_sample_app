@@ -12,6 +12,8 @@
     <%= label_tag(:search, "Title and content", value: 'title_and_content') %>
     <%= radio_button_tag('search', 'title_and_content_with_metaphones') %>
     <%= label_tag(:search, "Title and content (phonetic)", value: 'title_and_content_with_metaphones') %>
+    <%= radio_button_tag('search', 'title_and_content_with_stems') %>
+    <%= label_tag(:search, "Title and content (stems)", value: 'title_and_content_with_stems') %>
     <%= submit_tag("Search") %>
   <% end %>
 </div>

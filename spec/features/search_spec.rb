@@ -118,4 +118,13 @@ describe "search books from /" do
       expect(page).to have_selector('.book-title', text: "Auguries of Innocence")
     end
   end
+
+  describe "stem search" do
+    it "matches on queries with different inflections from the book text" do
+      FactoryGirl.create(:book, title: "Kicking Rose")
+      search_for(query: "kicked", choose: "search_title_and_content_with_stems")
+
+      expect(page).to have_selector('.book-title', text: "Kicking Rose")
+    end
+  end
 end

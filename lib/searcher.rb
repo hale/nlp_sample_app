@@ -4,7 +4,8 @@ class Searcher
     TITLE = "title",
     CONTENT = "content",
     TITLE_AND_CONTENT = "title_and_content",
-    METAPHONES = "title_and_content_with_metaphones"
+    METAPHONES = "title_and_content_with_metaphones",
+    STEMS = "title_and_content_with_stems"
   ]
 
   def self.search(query: nil, scope: nil)
@@ -14,6 +15,9 @@ class Searcher
     results = if scope == METAPHONES
                 metaphones = RailsNlp.metaphones(query_no_stopwords)
                 Book.send("search_#{scope}", metaphones)
+              elsif scope == STEMS
+                stems = RailsNlp.stems(query_no_stopwords)
+                Book.send("search_#{scope}", stems)
               else
                 Book.send("search_#{scope}", query_no_stopwords)
               end
