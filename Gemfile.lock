@@ -17,6 +17,7 @@ PATH
       facets (~> 2.9)
       ffi-hunspell (~> 0.3.0)
       sanitize (~> 2.1)
+      text (~> 1.2.3)
 
 GEM
   remote: https://rubygems.org/
@@ -213,6 +214,7 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
+    text (1.2.3)
     thor (0.19.1)
     thread_safe (0.3.3)
     tilt (1.4.1)

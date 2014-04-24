@@ -34,4 +34,10 @@ describe Searcher do
     Searcher.search(query: "the brown fox", scope: "title")
   end
 
+  it "can include metaphones when searching title+content" do
+    book = FactoryGirl.create(:book, title: "folio anthology of poetry")
+    rs = Searcher.search(query: "anthologie", scope: "title_and_content_with_metaphones")
+    expect(rs.results).to include(book)
+  end
+
 end

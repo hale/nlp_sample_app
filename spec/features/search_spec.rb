@@ -109,4 +109,13 @@ describe "search books from /" do
       expect(page).to have_selector(".search-query-stopwords-removed", text: /who best cat or rat/)
     end
   end
+
+  describe "phonetic search" do
+    it "gives relevant results when the query contains words with typos" do
+      FactoryGirl.create(:book, title: "Auguries of Innocence")
+      search_for(query: "augries of innocense", choose: "search_title_and_content_with_metaphones")
+
+      expect(page).to have_selector('.book-title', text: "Auguries of Innocence")
+    end
+  end
 end
