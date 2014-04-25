@@ -30,7 +30,7 @@ describe Searcher do
 
   it "takes stop_words, removes them from query before searching" do
     flexmock(RailsNlp).should_receive(:suggest_stopwords).and_return(["the"])
-    flexmock(Book).should_receive(:search_title).with("brown fox").and_return([])
+    flexmock(Book).should_receive(:search_title).with("brown fox").and_return([]).once
     Searcher.search(query: "the brown fox", scope: "title")
   end
 
