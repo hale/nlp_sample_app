@@ -9,28 +9,19 @@ class Searcher
   ]
 
   def self.search(query: query, scope: scope)
-    return ResultSet.new(query: "", results: [], query_no_stopwords: "") unless query
-    query_original = query
+    return ResultSet.null_object unless query
+    query_expanded = RailsNlp.expand(query)
     query = case scope
               when TITLE, CONTENT, TITLE_AND_CONTENT
-                remove_stopwords(query)
+                query_expanded.keywords
               when METAPHONES
-                RailsNlp.metaphones(remove_stopwords(query))
+                query_expanded.metaphones
               when STEMS
-                RailsNlp.stems(remove_stopwords(query))
+                query_expanded.stems
               else raise "cannot search on #{scope}"
               end
     results = Book.send("search_#{scope}", query)
-    ResultSet.new(query: query_original, results: results, query_no_stopwords: query)
+    ResultSet.new(query: query_expanded, results: results)
   end
 
-  private
-
-  def self.stop_words
-    RailsNlp.suggest_stopwords(n_max: 200)
-  end
-
-  def self.remove_stopwords(str)
-    (str.split - stop_words).join(" ")
-  end
 end

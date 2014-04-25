@@ -2,15 +2,18 @@ class ResultSet
 
   PER_PAGE = 5
 
-  attr_reader :query, :size, :query_no_stopwords
+  attr_reader :query, :size
   attr_accessor :page
 
-  def initialize(query: query, results: results, query_no_stopwords: query_no_stopwords)
+  def initialize(query: query, results: results)
     @query = query
     @results = results
-    @query_no_stopwords = query_no_stopwords
     @page = 1
     @size = results.size
+  end
+
+  def self.null_object
+    self.new(query: "", results: Book.none)
   end
 
   def results

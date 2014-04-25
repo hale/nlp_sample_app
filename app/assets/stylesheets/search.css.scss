@@ -4,6 +4,27 @@
 
 /* SEARCH RESULTS */
 
+dl#query-expanded {
+  font-size: 0.9em;
+}
+
+dl#query-expanded dt {
+  float: left;
+  clear: left;
+  text-align: left;
+  width: 25%;
+  padding-right: 1em;
+}
+
+dl#query-expanded dt:after {
+  content: ":";
+}
+
+
+dl#query-expanded dt, dl#query-expanded dd {
+  margin-bottom: 0.7em;
+}
+
 .results {
   margin-top: 50px;
 }

@@ -8,9 +8,9 @@ describe ResultSet do
       expect(rs.page).to eq(1)
     end
 
-    it "assigns the search query" do
-      rs = ResultSet.new(query: "test", results: ResultsMock.new)
-      expect(rs.query).to eq("test")
+    it "assigns a search query object" do
+      rs = ResultSet.new(query: RailsNlp.expand("test"), results: ResultsMock.new)
+      expect(rs.query.to_s).to eq("test")
     end
 
     it "has a size equal to the number of results" do
@@ -27,11 +27,9 @@ describe ResultSet do
     end
   end
 
-  describe "RailsNLP extras" do
-    it "includes the query with stopwords removed" do
-      rs = ResultSet.new(query: "the big man", results: ResultsMock.new, query_no_stopwords: "big man")
-      expect(rs.query_no_stopwords).to eq("big man")
-    end
+  it "#null_object a gives a null instance" do
+    rs = ResultSet.null_object
+    expect(rs.results).to eq([])
   end
 
 end

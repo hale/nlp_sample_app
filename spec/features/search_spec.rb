@@ -9,10 +9,6 @@ end
 
 describe "search books from /" do
 
-  before(:each) do
-    flexmock(RailsNlp).should_receive(:suggest_stopwords).and_return([]).by_default
-  end
-
   describe "restricting search to certain fields" do
     it "with 'search titles' includes results matching the title"  do
       FactoryGirl.create(:book, title: "Jade divorces Edward")
@@ -97,34 +93,55 @@ describe "search books from /" do
 
   describe "removing stop words" do
     it "removes frequently occurring words" do
-      RailsNlp.flexmock_teardown
       FactoryGirl.create(:book, title: "the cat is in the hat", content: "it is the best")
       FactoryGirl.create(:book, title: "the rat is on the mat", content: "to is or not to is")
       FactoryGirl.create(:book, title: "the poodle is on the desk")
       FactoryGirl.create(:book, title: "big printer tackles red car")
-      flexmock(Searcher).should_receive(:stop_words).and_return(RailsNlp.suggest_stopwords)
       visit '/'
       search_for(query: "who is the best the cat or the rat", choose: "search_title_and_content")
 
-      expect(page).to have_selector(".search-query-stopwords-removed", text: /who best cat or rat/)
+      expect(page).to have_selector("#query-expanded", text: /who is best cat or rat/)
+    end
+
+    it "results page displays query with stopwords removed" do
+      flexmock(RailsNlp.suggest_stopwords).should_receive(:stop_words).and_return(["foo"])
+      visit '/'
+      search_for(query: "foo bar", choose: "search_title")
+      expect(page).to have_content("bar")
     end
   end
 
   describe "phonetic search" do
     it "gives relevant results when the query contains words with typos" do
       FactoryGirl.create(:book, title: "Auguries of Innocence")
+      visit '/'
       search_for(query: "augries of innocense", choose: "search_title_and_content_with_metaphones")
 
       expect(page).to have_selector('.book-title', text: "Auguries of Innocence")
+    end
+
+    it "displays the phonetic version of the search query" do
+      visit '/'
+      search_for(query: "food bin", choose: "search_title_and_content_with_metaphones")
+
+      expect(page).to have_content(/FT PN/)
     end
   end
 
   describe "stem search" do
     it "matches on queries with different inflections from the book text" do
       FactoryGirl.create(:book, title: "Kicking Rose")
+      visit '/'
       search_for(query: "kicked", choose: "search_title_and_content_with_stems")
 
       expect(page).to have_selector('.book-title', text: "Kicking Rose")
+    end
+
+    it "displays the stemmed version of the search query" do
+      visit '/'
+      search_for(query: "running flowers", choose: "search_title_and_content_with_stems")
+
+      expect(page).to have_content(/run flower/)
     end
   end
 end

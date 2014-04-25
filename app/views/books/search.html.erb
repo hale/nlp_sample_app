@@ -3,11 +3,18 @@
       <div class="row">
         <div class="large-9 columns">
           <h2 class="search-query search-results-count">
-            <%= "#{@result_set.size} Results for: #{@result_set.query}" %>
+            <%= pluralize(@result_set.size, 'result') + " for \"#{@result_set.query}\""%>
           </h2>
-          <h3 class="search-query-stopwords-removed">
-            Actual search query: <%= @result_set.query_no_stopwords %>
-          </h3>
+          <dl id="query-expanded" class="">
+            <dt>Search scope</dt>
+            <dd><%= params[:search].gsub(/_/,' ').titlecase %></dd>
+            <dt>Stopwords removed</dt>
+            <dd><%= @result_set.query.keywords %></dd>
+            <dt>Metaphone conversion</dt>
+            <dd><%= @result_set.query.metaphones %></dd>
+            <dt>Stem conversion</dt>
+            <dd><%= @result_set.query.stems %></dd>
+          </dl>
         </div>
       </div>
       <%= paginate @result_set.results %>
