@@ -93,6 +93,7 @@ describe "search books from /" do
 
   describe "removing stop words" do
     it "removes frequently occurring words" do
+      flexmock(RailsNlp.configuration).should_receive(:fields).and_return(["title", "content"])
       FactoryGirl.create(:book, title: "the cat is in the hat", content: "it is the best")
       FactoryGirl.create(:book, title: "the rat is on the mat", content: "to is or not to is")
       FactoryGirl.create(:book, title: "the poodle is on the desk")
@@ -100,7 +101,7 @@ describe "search books from /" do
       visit '/'
       search_for(query: "who is the best the cat or the rat", choose: "search_title_and_content")
 
-      expect(page).to have_selector("#query-expanded", text: /who is best cat or rat/)
+      expect(page).to have_selector("#query-expanded", text: /who best cat or rat/)
     end
 
     it "results page displays query with stopwords removed" do
