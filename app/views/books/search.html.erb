@@ -5,6 +5,9 @@
           <h2 class="search-query search-results-count">
             <%= pluralize(@result_set.size, 'result') + " for \"#{@result_set.query}\""%>
           </h2>
+          <% if (!@result_set.query.correct? && @result_set.query.corrected != @result_set.query.to_s) %>
+            <h3>Did you mean: "<span id=search_suggestion><%= @result_set.query.corrected %></span>"?</h3>
+          <% end %>
           <dl id="query-expanded" class="">
             <dt>Search scope</dt>
             <dd><%= params[:search].gsub(/_/,' ').titlecase %></dd>

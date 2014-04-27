@@ -145,4 +145,36 @@ describe "search books from /" do
       expect(page).to have_content(/run flower/)
     end
   end
+
+  describe "search suggestions" do
+    it "suggests correct spelling when word is misspelled" do
+      FactoryGirl.create(:book, title: "Flowers are nice and other insights")
+      visit '/'
+      search_for(query: "flowerss and other insights", choose: "search_title")
+
+      expect(page).to have_selector('#search_suggestion', text: "flowers and other insights")
+    end
+
+    it "gives no suggestion when word is correctly spelled" do
+      visit '/'
+      search_for(query: "Everything about this sentence checks out", choose: "search_title_and_content")
+
+      expect(page).to_not have_selector('#search_suggestion')
+    end
+
+    it "doesn't suggest anything if none of the words can be corrected" do
+      visit '/'
+      search_for(query: "ksdhbkvj hbsdfkjhv bksjh", choose: "search_title_and_content")
+
+      expect(page).to_not have_selector('#search_suggestion')
+    end
+
+    it "suggests as much of a query as possible: leaves incorrectable words alone" do
+      FactoryGirl.create(:book, title: "correctable")
+      visit '/'
+      search_for(query: "okay notokay correctablee", choose: "search_title")
+
+      expect(page).to have_selector('#search_suggestion', text: "okay notokay correctable")
+    end
+  end
 end
