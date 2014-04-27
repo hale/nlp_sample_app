@@ -176,5 +176,14 @@ describe "search books from /" do
 
       expect(page).to have_selector('#search_suggestion', text: "okay notokay correctable")
     end
+
+    it "search suggestion links to search for that query" do
+      FactoryGirl.create(:book, title: "correctable")
+      visit '/'
+      search_for(query: "okay notokay correctablee", choose: "search_title")
+      click_on "okay notokay correctable"
+
+      expect(page).to have_selector('.search-query', text: /okay notokay correctable/)
+    end
   end
 end

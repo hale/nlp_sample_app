@@ -2,14 +2,15 @@ class ResultSet
 
   PER_PAGE = 5
 
-  attr_reader :query, :size
+  attr_reader :query, :size, :scope
   attr_accessor :page
 
-  def initialize(query: query, results: results)
+  def initialize(query: query, results: results, scope: scope)
     @query = query
     @results = results
     @page = 1
     @size = results.size
+    @scope = scope
   end
 
   def self.null_object

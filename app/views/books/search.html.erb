@@ -6,11 +6,13 @@
             <%= pluralize(@result_set.size, 'result') + " for \"#{@result_set.query}\""%>
           </h2>
           <% if (!@result_set.query.correct? && @result_set.query.corrected != @result_set.query.to_s) %>
-            <h3>Did you mean: "<span id=search_suggestion><%= @result_set.query.corrected %></span>"?</h3>
-          <% end %>
+            <p>Did you mean <em><span id=search_suggestion>
+              <%= link_to(@result_set.query.corrected, search_books_path(query: @result_set.query.corrected, search: @result_set.scope)) %>
+            </span></em>?</p>
+        <% end %>
           <dl id="query-expanded" class="">
             <dt>Search scope</dt>
-            <dd><%= params[:search].gsub(/_/,' ').titlecase %></dd>
+            <dd><%= @result_set.scope.gsub(/_/,' ').titlecase %></dd>
             <dt>Stopwords removed</dt>
             <dd><%= @result_set.query.keywords %></dd>
             <dt>Metaphone conversion</dt>

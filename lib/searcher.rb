@@ -21,7 +21,7 @@ class Searcher
               else raise "cannot search on #{scope}"
               end
     results = Book.send("search_#{scope}", query)
-    ResultSet.new(query: query_expanded, results: results)
+    ResultSet.new(query: query_expanded, results: results, scope: scope)
   end
 
 end
