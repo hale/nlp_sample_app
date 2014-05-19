@@ -10,10 +10,10 @@
     <%= label_tag(:search, "Content", value: 'content') %>
     <%= radio_button_tag('search', 'title_and_content') %>
     <%= label_tag(:search, "Title and content", value: 'title_and_content') %>
-    <%= radio_button_tag('search', 'title_and_content_with_metaphones') %>
-    <%= label_tag(:search, "Title and content (phonetic)", value: 'title_and_content_with_metaphones') %>
-    <%= radio_button_tag('search', 'title_and_content_with_stems') %>
-    <%= label_tag(:search, "Title and content (stems)", value: 'title_and_content_with_stems') %>
+    <%= radio_button_tag('search', 'metaphones') %>
+    <%= label_tag(:search, "Metaphones", value: 'metaphones') %>
+    <%= radio_button_tag('search', 'stems') %>
+    <%= label_tag(:search, "Stems", value: 'stems') %>
     <%= submit_tag("Search") %>
   <% end %>
 </div>

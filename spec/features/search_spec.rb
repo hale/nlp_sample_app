@@ -116,14 +116,14 @@ describe "search books from /" do
     it "gives relevant results when the query contains words with typos" do
       FactoryGirl.create(:book, title: "Auguries of Innocence")
       visit '/'
-      search_for(query: "augries of innocense", choose: "search_title_and_content_with_metaphones")
+      search_for(query: "augries of innocense", choose: "search_metaphones")
 
       expect(page).to have_selector('.book-title', text: "Auguries of Innocence")
     end
 
     it "displays the phonetic version of the search query" do
       visit '/'
-      search_for(query: "food bin", choose: "search_title_and_content_with_metaphones")
+      search_for(query: "food bin", choose: "search_metaphones")
 
       expect(page).to have_content(/FT PN/)
     end
@@ -133,14 +133,14 @@ describe "search books from /" do
     it "matches on queries with different inflections from the book text" do
       FactoryGirl.create(:book, title: "Kicking Rose")
       visit '/'
-      search_for(query: "kicked", choose: "search_title_and_content_with_stems")
+      search_for(query: "kicked", choose: "search_stems")
 
       expect(page).to have_selector('.book-title', text: "Kicking Rose")
     end
 
     it "displays the stemmed version of the search query" do
       visit '/'
-      search_for(query: "running flowers", choose: "search_title_and_content_with_stems")
+      search_for(query: "running flowers", choose: "search_stems")
 
       expect(page).to have_content(/run flower/)
     end

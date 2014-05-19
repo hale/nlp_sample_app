@@ -4,8 +4,8 @@ class Searcher
     TITLE = "title",
     CONTENT = "content",
     TITLE_AND_CONTENT = "title_and_content",
-    METAPHONES = "title_and_content_with_metaphones",
-    STEMS = "title_and_content_with_stems"
+    METAPHONES = "metaphones",
+    STEMS = "stems"
   ]
 
   def self.search(query: query, scope: scope)
