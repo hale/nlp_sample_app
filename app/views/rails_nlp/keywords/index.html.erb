@@ -1,27 +1,25 @@
-<div class="row">
-  <h1>Listing keywords</h1>
+<h1>Listing keywords</h1>
 
-  <%= paginate @keywords %>
+<%= paginate @keywords %>
 
-  <table>
-    <thead>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Metaphone</th>
+      <th>Stem</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @keywords.each do |keyword| %>
       <tr>
-        <th>Name</th>
-        <th>Metaphone</th>
-        <th>Stem</th>
+        <td><%= keyword.name %></td>
+        <td><%= keyword.metaphone %></td>
+        <td><%= keyword.stem %></td>
       </tr>
-    </thead>
+    <% end %>
+  </tbody>
+</table>
 
-    <tbody>
-      <% @keywords.each do |keyword| %>
-        <tr>
-          <td><%= keyword.name %></td>
-          <td><%= keyword.metaphone %></td>
-          <td><%= keyword.stem %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-  <br>
-</div>
+<br>

@@ -15,7 +15,7 @@
 
   <body data-no-turbolink>
 
-    <div class=row>
+    <div class="row">
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
     </div>
@@ -24,7 +24,10 @@
       <%= render partial: 'home/nav' %>
     </div>
 
-    <%= yield %>
+    <div class="row">
+      <%= yield %>
+    <div>
+
     <%= javascript_include_tag "application" %>
   </body>
 </html>

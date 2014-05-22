@@ -1,33 +1,31 @@
-<div class="row">
-  <h1>Listing books</h1>
+<h1>Listing books</h1>
 
-  <%= paginate @books %>
+<%= paginate @books %>
 
-  <table>
-    <thead>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Content</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @books.each do |book| %>
       <tr>
-        <th>Title</th>
-        <th>Content</th>
-        <th></th>
-        <th></th>
-        <th></th>
+        <td><%= book.title %></td>
+        <td><%= book.content[0..1000] if book.content %></td>
+        <td><%= link_to 'Show', book %></td>
+        <td><%= link_to 'Edit', edit_book_path(book) %></td>
+        <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-    </thead>
+    <% end %>
+  </tbody>
+</table>
 
-    <tbody>
-      <% @books.each do |book| %>
-        <tr>
-          <td><%= book.title %></td>
-          <td><%= book.content[0..1000] if book.content %></td>
-          <td><%= link_to 'Show', book %></td>
-          <td><%= link_to 'Edit', edit_book_path(book) %></td>
-          <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+<br>
 
-  <br>
-
-  <%= link_to 'New Book', new_book_path %>
-</div>
+<%= link_to 'New Book', new_book_path %>
