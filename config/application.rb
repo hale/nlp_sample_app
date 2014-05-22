@@ -21,5 +21,8 @@ module NlpSampleApp
     # config.i18n.default_locale = :de
 
     config.autoload_paths += %W(#{config.root}/lib)
+
+    # required when adding extensions in sql.
+    config.active_record.schema_format = :sql
   end
 end

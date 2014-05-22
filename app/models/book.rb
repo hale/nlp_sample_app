@@ -10,4 +10,6 @@ class Book < ActiveRecord::Base
   pg_search_scope :search_stems, associated_against: {
     :keywords => :stem
   }
+
+  pg_search_scope :autocomplete, against: :title, using: :trigram
 end
