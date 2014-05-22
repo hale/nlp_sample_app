@@ -6,12 +6,19 @@
 
     <title><%= content_for?(:title) ? yield(:title) : "RailsNlp: Science Fiction Bookshelf" %></title>
 
+
+
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= csrf_meta_tags %>
   </head>
 
   <body data-no-turbolink>
+
+    <div class=row>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+    </div>
 
     <div class="sticky">
       <%= render partial: 'home/nav' %>
