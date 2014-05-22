@@ -1,5 +1,6 @@
 NlpSampleApp::Application.routes.draw do
 
+  devise_for :users
   resources :books do
     get 'search', on: :collection
     get 'autocomplete', on: :collection
