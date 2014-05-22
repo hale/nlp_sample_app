@@ -8,7 +8,7 @@ class BooksController < ApplicationController
   end
 
   def autocomplete
-    render json: Book.autocomplete(params[:query]).limit(10).map(&:title)
+    render json: Book.autocomplete(params[:query]).limit(10).to_json(only: [:title, :id])
   end
 
   # GET /books

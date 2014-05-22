@@ -23,10 +23,7 @@ var engine = new Bloodhound({
   name: 'books',
   local: [],
   remote: {
-    url: "/books/autocomplete?query=%QUERY",
-    filter: function(list) {
-      return $.map(list, function(title) { return { title: title }; });
-    }
+    url: "/books/autocomplete?query=%QUERY"
   },
   datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d.val); },
   queryTokenizer: Bloodhound.tokenizers.whitespace
@@ -37,6 +34,8 @@ engine.initialize();
 $('#book_search').typeahead(null, {
   displayKey: 'title',
   source: engine.ttAdapter()
+}).bind("typeahead:selected", function(obj, datum, name) {
+  window.location.replace("/books/" + datum.id);
 });
 
 
