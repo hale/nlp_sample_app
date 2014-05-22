@@ -7,10 +7,14 @@ class BooksController < ApplicationController
     @result_set.page = params[:page]
   end
 
+  def autocomplete
+    render json: Book.autocomplete(params[:query]).limit(10).map(&:title)
+  end
+
   # GET /books
   # GET /books.json
   def index
-    @books = Book.all
+    @books = Book.all.page(params[:page]).per(5)
   end
 
   # GET /books/1

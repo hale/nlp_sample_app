@@ -14,6 +14,31 @@
 //= require jquery_ujs
 //= require foundation
 //= require turbolinks
+//= require twitter/typeahead
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
+
+var engine = new Bloodhound({
+  name: 'books',
+  local: [],
+  remote: {
+    url: "/books/autocomplete?query=%QUERY",
+    filter: function(list) {
+      return $.map(list, function(title) { return { title: title }; });
+    }
+  },
+  datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d.val); },
+  queryTokenizer: Bloodhound.tokenizers.whitespace
+});
+
+engine.initialize();
+
+$('#book_search').typeahead(null, {
+  displayKey: 'title',
+  source: engine.ttAdapter()
+});
+
+
+
+
