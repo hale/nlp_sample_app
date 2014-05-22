@@ -13,6 +13,10 @@
 
   <body data-no-turbolink>
 
+    <div class="sticky">
+      <%= render partial: 'home/nav' %>
+    </div>
+
     <%= yield %>
     <%= javascript_include_tag "application" %>
   </body>

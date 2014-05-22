@@ -7,6 +7,9 @@ NlpSampleApp::Application.routes.draw do
 
   root 'home#index'
 
+  namespace :rails_nlp do
+    resources :keywords
+  end
 
 
 

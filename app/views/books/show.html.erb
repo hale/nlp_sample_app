@@ -1,3 +1,4 @@
+<div class="row">
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -10,5 +11,28 @@
   <%= @book.content %>
 </p>
 
+<h3>Keywords</h3>
+
+<% @freq = @book.keywords.order('wordcounts.count DESC').joins(:wordcounts).pluck(:name).each_with_object(Hash.new(0)) { |w, counts| counts[w] +=1 } %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Count</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @freq.each do |word, count| %>
+      <tr>
+        <td><%= word %></td>
+        <td><%= count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 <%= link_to 'Edit', edit_book_path(@book) %> |
 <%= link_to 'Back', books_path %>
+</div>

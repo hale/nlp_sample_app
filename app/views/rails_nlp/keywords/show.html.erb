@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @keyword.name %>
+</p>
+
+<p>
+  <strong>Metaphone:</strong>
+  <%= @keyword.metaphone %>
+</p>
+
+<p>
+  <strong>Stem:</strong>
+  <%= @keyword.stem %>
+</p>
+
+<%= link_to 'Back', rails_nlp_keywords_path %>
